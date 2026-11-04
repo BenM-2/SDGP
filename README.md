@@ -32,7 +32,7 @@ Run all commands from the project root.
 Run all commands from the project root
 
 1. Run setup script:
-    ```chmod -x setup_darwin.sh
+    ``` chmod -x setup_darwin.sh
         ./setup_darwin.sh
     ```
 
@@ -41,7 +41,8 @@ Run all commands from the project root
     ```
 
 3. To activate the venv, run: 
-    ```source .venv/bin/activate```
+    ``` source .venv/bin/activate
+    ```
 
     You will need to run this command in each new terminal session. Run `deactivate` to leave the environement 
 
