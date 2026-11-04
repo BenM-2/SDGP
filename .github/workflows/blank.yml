@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, testing]
+
+jobs:
+  test:
+    name: test (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: ubuntu
+            os: ubuntu-latest
+            setup: bash setup_ubuntu.sh
+            python: .venv/bin/python
+          - name: macos-arm
+            os: macos-latest
+            setup: bash setup_darwin.sh
+            python: .venv/bin/python
+          - name: macos-intel
+            os: macos-15-intel
+            setup: bash setup_darwin.sh
+            python: .venv/bin/python
+          - name: windows
+            os: windows-latest
+            setup: ./setup_windows.ps1
+            python: .venv\Scripts\python.exe
+    steps:
+      - uses: actions/checkout@v4
+
+      # The setup scripts expect uv to already be on PATH
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: requirements.txt
+
+      - name: Run setup script
+        run: ${{ matrix.setup }}
+
+      - name: Run tests
+        run: ${{ matrix.python }} -m pytest
