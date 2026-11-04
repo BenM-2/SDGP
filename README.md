@@ -19,7 +19,7 @@ Run all commands from the project root.
     ```
 
 2. If `uv` is not installed it will promt you with:
-    ```bash
+    ``` bash
     uv is not installed. Run: sudo apt install pipx && pipx install uv
     ```
     Run the command shown, then run `./setup_ubuntu` again. If `uv` isn't found afterwards run `pipx ensurepath` and restart your terminal
