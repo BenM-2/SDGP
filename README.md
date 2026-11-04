@@ -29,7 +29,23 @@ Run all commands from the project root.
 
 ## Mac
 
-## Linux (Debain/Ubuntu-based)
+Run all commands from the project root
+
+1. Run setup script:
+    ```chmod -x setup_darwin.sh
+        ./setup_darwin.sh
+    ```
+
+2. If UV is not installed then run:
+    ``` brew install pipx && pipx install uv
+    ```
+
+3. To activate the venv, run: 
+    ```source .venv/bin/activate```
+
+    You will need to run this command in each new terminal session. Run `deactivate` to leave the environement 
+
+## Linux (Debian/Ubuntu-based)
 
 Run all commands from the project root.
 
