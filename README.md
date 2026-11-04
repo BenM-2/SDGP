@@ -1,7 +1,7 @@
 # SDGP
 
 # Overview
-This project is set out to provide a solution to 
+
 
 # Setup 
 ## Windows 
