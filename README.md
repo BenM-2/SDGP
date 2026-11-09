@@ -25,7 +25,7 @@ Run all commands from the project root.
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
     .\.venv\Scripts\Activate.ps1
     ```
-    You will need to run this command in each new terminal session. Run `deactivate` to leave the environement 
+    You will need to run this command in each new terminal session. Run `deactivate` to leave the environment 
 
 ## Mac
 
@@ -47,7 +47,7 @@ Run all commands from the project root
         source .venv/bin/activate
     ```
 
-    You will need to run this command in each new terminal session. Run `deactivate` to leave the environement 
+    You will need to run this command in each new terminal session. Run `deactivate` to leave the environment 
 
 ## Linux (Debian/Ubuntu-based)
 
@@ -69,7 +69,7 @@ Run all commands from the project root.
     ``` bash 
     source .venv/bin/activate
     ```
-    You will need to run this command in each new terminal session. Run `deactivate` to leave the environement 
+    You will need to run this command in each new terminal session. Run `deactivate` to leave the environment 
 
 
 
