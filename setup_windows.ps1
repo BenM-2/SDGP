@@ -20,30 +20,11 @@ if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
     exit 1
 }
 
-$needsVenv = $true
-if (Test-Path $Python) {
-    $currentVersion = & $Python -c "import platform; print(platform.python_version())"
-    if ($LASTEXITCODE -eq 0 -and $currentVersion -eq $RequiredVersion) {
-        $needsVenv = $false
-        Write-Host "Python $RequiredVersion venv already exists."
-    }
-}
-
-if ($needsVenv) {
-    uv python install $RequiredVersion
-    Assert-Success
-
-    uv venv --seed --python $RequiredVersion --clear $VenvDir
-    Assert-Success
-}
-
-& $Python -m pip install --upgrade pip
+uv python install $RequiredVersion
 Assert-Success
 
-if (Test-Path "requirements.txt") {
-    & $Python -m pip install -r requirements.txt
-    Assert-Success
-}
+uv sync --python $RequiredVersion
+Assert-Success
 
 Write-Host "Setup complete!"
 & $Python --version
