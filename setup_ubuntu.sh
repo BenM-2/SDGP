@@ -14,22 +14,8 @@ if ! command -v uv >/dev/null 2>&1; then
     exit 1
 fi
 
-NEEDS_VENV=true
-if [ -x "$PYTHON" ] && [ "$("$PYTHON" -c 'import platform; print(platform.python_version())')" = "$REQUIRED_VERSION" ]; then
-    NEEDS_VENV=false
-    echo "Python $REQUIRED_VERSION venv already exists."
-fi
-
-if [ "$NEEDS_VENV" = true ]; then
-    uv python install "$REQUIRED_VERSION"
-    uv venv --seed --python "$REQUIRED_VERSION" --clear "$VENV_DIR"
-fi
-
-"$PYTHON" -m pip install --upgrade pip
-
-if [ -f "requirements.txt" ]; then
-    "$PYTHON" -m pip install -r requirements.txt
-fi
+uv python install "$REQUIRED_VERSION"
+uv sync --python "$REQUIRED_VERSION"
 
 echo "Setup complete!"
 "$PYTHON" --version

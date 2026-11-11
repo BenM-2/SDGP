@@ -36,7 +36,9 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-          cache-dependency-glob: requirements.txt
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
 
       - name: Run setup script
         run: ${{ matrix.setup }}
