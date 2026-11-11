@@ -1,0 +1,22 @@
+[project]
+name = "shortest_delievery_tool"
+version = "0.1.0"
+description = ""
+requires-python = "==3.14.10"
+dependencies = [
+    "numpy==2.5.4",
+    "customtkinter>=6.0.0",
+    "python-dotenv>=1.2.4",
+    "requests>=2.34.2",
+    "zeep>=4.3.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "sphinx==9.2.0",
+]
+
+
+[tool.pytest.ini_options]
+pythonpath = ["source"]
