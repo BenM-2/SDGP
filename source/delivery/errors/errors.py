@@ -5,7 +5,7 @@
 @Description:   This file contains custom error classes for the delivery package. These classes are used to handle specific error scenarios that may arise during the execution of the program.
 """
 
-from enum import Enum, auto
+from . import *
 
 class Errors(Exception):
     def __init__(self, message: str, code: int = 0):

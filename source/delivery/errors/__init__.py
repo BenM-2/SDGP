@@ -6,8 +6,11 @@
 """
 
 from enum import Enum, auto
+from typing import Optional, Any
 
 __all__ = [
-    Enum,
-    auto
+    "Enum",
+    "auto",
+    "Optional",
+    "Any",
 ]
