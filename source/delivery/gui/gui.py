@@ -1,3 +1,10 @@
+"""
+@Author:        George Dawson
+@Date:          13/11/2026
+@Name:          gui.py
+@Description:   This file contains the implementation of the GUI class for the delivery package. The GUI class is responsible for creating and managing the graphical user interface of the application using the CustomTkinter library.
+"""
+
 from . import *
 
 class Gui(ctk.CTk):
