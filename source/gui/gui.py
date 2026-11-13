@@ -1,5 +1,4 @@
-import typing
-import customtkinter as ctk
+from . import *
 
 class Gui(ctk.CTk):
     def __init__(self, responsive_window: bool=False) -> None:
