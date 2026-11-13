@@ -414,7 +414,7 @@ wheels = [
 ]
 
 [[package]]
-name = "shortest-delievery-tool"
+name = "shortest-delivery-tool"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
