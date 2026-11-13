@@ -14,11 +14,6 @@ from .errors.errors import (
     GenericError,
 )
 
-# GUI
-from .gui.gui import (
-    Gui,
-)
-
 # Algorithms
 # Add imports once algorithm modules are created.
 # from .algorithm.algorithm_dc import Route, DeliveryResult
@@ -37,9 +32,6 @@ __all__ = [
     "GUIError",
     "ParsingError",
     "GenericError",
-
-    # GUI
-    "Gui",
 
     # Algorithms
     # "Route",
