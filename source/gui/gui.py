@@ -27,5 +27,11 @@ class Gui(ctk.CTk):
         self.button = ctk.CTkButton(self, text="Click Me", command=self.on_button_click)
         self.button.pack(pady=10)
 
+
     def on_button_click(self):
         self.label.configure(text="Button Clicked!")
+
+
+if __name__ == "__main__":
+    app = Gui(responsive_window=True)
+    app.mainloop()
