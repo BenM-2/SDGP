@@ -6,6 +6,12 @@
 """
 
 
+# TODO: change navigation from left to top
+#       get heartbeat wokring
+#       work on error management
+#       experiment with asyncio
+
+
 from . import *
 
 
@@ -24,6 +30,10 @@ class LeftSidebar(ctk.CTkFrame):
             ctk.CTkButton(
                 self, text=name, command=lambda n=name: print(f"Selected: {n}")
             ).grid(row=row, column=0, padx=10, pady=5, sticky="ew")
+
+    def update_frame(self, dt: float):
+            # Update animations or visualisations
+            pass
 
 
 class MainPanel(ctk.CTkFrame):
@@ -45,6 +55,10 @@ class MainPanel(ctk.CTkFrame):
             self.workspace, text="Algorithm visualisation goes here"
         ).pack(expand=True)
 
+    def update_frame(self, dt: float):
+            # Update animations or visualisations
+            pass
+
 
 class RightSidebar(ctk.CTkFrame):
     """Right sidebar for properties and settings"""
@@ -65,11 +79,18 @@ class RightSidebar(ctk.CTkFrame):
             self, placeholder_text="Route name"
         ).grid(row=2, column=0, padx=15, pady=5, sticky="ew")
 
+    def update_frame(self, dt: float):
+        # Update animations or visualisations
+        pass
+
 
 class Gui(ctk.CTk):
     """Main GUI class for the delivery application"""
     SIDEBAR_WIDTH = 220
     MIN_CENTRE_WIDTH = 350
+
+    TARGET_FPS = 60
+    FRAME_TIME = 1.0 / TARGET_FPS
 
     def __init__(self, responsive_window: bool = True):
         super().__init__()
@@ -123,7 +144,16 @@ class Gui(ctk.CTk):
         self.right = RightSidebar(self)
         self.right.grid(row=1, column=2, sticky="nsew")
 
+        self.running = True
+        self.last_frame = time.perf_counter()
+
+        self.after(0, self.heartbeat)
+        self.protocol("WM_DELETE_WINDOW", self.on_close)    # custom window close protocol, to stop heartbeat and close window
+
         self.bind("<Configure>", self.on_resize)
+
+        self.fps_label = ctk.CTkLabel(self, text="FPS: 0")
+        self.fps_label.grid()
 
 
     def on_resize(self, event):
@@ -138,6 +168,40 @@ class Gui(ctk.CTk):
         elif self.right_visible:
             self.grid_columnconfigure(2, minsize=self.SIDEBAR_WIDTH)
             self.right.grid()
+
+
+    def on_close(self):
+        self.running = False
+        self.destroy()
+
+
+    def heartbeat(self):
+        if not self.running:
+            return
+
+        frame_start = time.perf_counter()
+
+        dt = frame_start - self.last_frame
+        self.last_frame = frame_start
+
+        self.update_gui(dt)
+
+        elapsed = time.perf_counter() - frame_start
+        delay = max(1, round((self.FRAME_TIME - elapsed) * 1000))
+
+        self.after(delay, self.heartbeat)
+
+
+    def update_gui(self, dt: float):
+        fps = 1 / dt if dt > 0 else 0
+
+        self.fps_label.configure(
+            text=f"FPS: {fps:.1f}"
+        )
+
+        self.left.update_frame(dt)
+        self.main.update_frame(dt)
+        self.right.update_frame(dt)
 
 
     def set_responsive_size(self):

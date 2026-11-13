@@ -10,6 +10,8 @@ import os
 import sys
 from typing import Any, Optional
 
+import time
+
 # Third-party libraries
 import customtkinter as ctk
 
@@ -24,4 +26,5 @@ __all__ = [
     "ctk",
     "Errors",
     "GUIError",
+    "time",
 ]
