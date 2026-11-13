@@ -1,3 +1,10 @@
+"""
+@Author:        George Dawson
+@Date:          13/11/2026
+@Name:          errors.py
+@Description:   This file contains custom error classes for the delivery package. These classes are used to handle specific error scenarios that may arise during the execution of the program.
+"""
+
 class Errors(Exception):
     def __init__(self, message: str, code: int = 0):
         self.message = message
