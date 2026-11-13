@@ -7,7 +7,6 @@ class Gui(ctk.CTk):
         Initialise the GUI application
 
         :param responsive_window: If set to True, the default window size will be responsive to active display size
-
         :return: None
         """
         super().__init__()
