@@ -75,4 +75,7 @@ Run all commands from the project root.
 
 # Usage
 
-
+1. For testing the GUI, run in venv:
+    ``` 
+    uv run -m source.delivery.gui.gui
+    ```
