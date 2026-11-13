@@ -19,8 +19,13 @@ class Gui(ctk.CTk):
         self.title("SDGP")
         # Set the window size to 80% of the screen size if responsive_window is True
 
-        self.geometry("1000x600") if not responsive_window \
-            else f"{int(self.winfo_screenwidth() * 0.8)}x{int(self.winfo_screenheight() * 0.8)}"
+        if responsive_window:
+            width = int(self.winfo_screenwidth() * 0.8)
+            height = int(self.winfo_screenheight() * 0.8)
+            self.geometry(f"{width}x{height}")
+            
+        else:
+            self.geometry("1000x600")
 
         self.resizable(True, True) # sets window to resizable
 
