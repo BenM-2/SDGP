@@ -17,3 +17,4 @@ def example_algorithm():
 def floyd_warshall(graph_network: list[dict[str, dict[str, int]]]) -> np.ndarray :
     x = np.ndarray(shape=1)
     return x
+
