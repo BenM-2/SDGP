@@ -17,6 +17,8 @@ dev = [
     "sphinx==9.2.0",
 ]
 
+[tool.pyright]
+extraPaths = ["source"]
 
 [tool.pytest.ini_options]
 pythonpath = ["source"]
