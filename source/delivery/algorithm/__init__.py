@@ -6,7 +6,7 @@ import statistics
 from typing import Any, Optional
 
 # Third-party
-import numpy as np # type: ignore
+import numpy as np  
 
 # Project dependencies
 from ..errors.errors import Errors, AlgorithmError, AlgorithmErrorCode
