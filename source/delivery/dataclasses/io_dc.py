@@ -36,4 +36,4 @@ class input_distances:
 @dataclass
 class output:
     filename: str
-    result: None
+    result: None # dict[shift, dict[areas, trucks]] // expected output structure
