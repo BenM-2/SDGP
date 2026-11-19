@@ -12,15 +12,11 @@ x = {
     "A1":[["A2",7],["AX",time]]
 }
 """
-@dataclass
-class DeliveryParsed:
-    time_From_Headquarters:dict[str,int]
-    internal_sector_times:list[dict[str,dict[str,int]]]
 
 
 @dataclass
 class AlgorithmPrecompute:
-    parsed: DeliveryParsed
+    parsed: input_distances
     graphs: list[dict[str, dict[str, int]]] = field(init=False, repr=False)
     shortest_times: dict[str, dict[str, int]] | None | np.ndarray = field(init=False, repr=False)
     
@@ -35,7 +31,7 @@ class AlgorithmPrecompute:
 
 
 if __name__ == "__main__":
-    parsed = DeliveryParsed(time_From_Headquarters= {},internal_sector_times=[{}])
+    parsed = input_distances(time_From_Headquarters= {},internal_Sector_Times=[{}])
     x = AlgorithmPrecompute(parsed)
 
     print(x)

@@ -6,10 +6,12 @@
 """
 from __future__ import annotations
 from dataclasses import dataclass,field
-from typing import Callable
+from typing import Callable, IO, TextIO
 from ..algorithm.algorithm import floyd_warshall
+from ..dataclasses.io_dc import * # do as i say not as i do :)
 # Third-party
-import numpy as np  
+import numpy as np
+import csv
 
 
 from .algorithm_dc import AlgorithmPrecompute
@@ -21,5 +23,7 @@ __all__ = [
     "Callable",
     "floyd_warshall",
     "np",
-    "AlgorithmPrecompute"
+    "AlgorithmPrecompute",
+    "input_routes",
+    "input_distances",
 ]
