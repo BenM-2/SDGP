@@ -36,4 +36,6 @@ class AlgorithmPrecompute:
 
 if __name__ == "__main__":
     parsed = DeliveryParsed(time_From_Headquarters= {},internal_sector_times=[{}])
-    AlgorithmPrecompute(parsed)
+    x = AlgorithmPrecompute(parsed)
+
+    print(x)
