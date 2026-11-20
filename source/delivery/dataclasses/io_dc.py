@@ -35,7 +35,7 @@ class input_distances:
         "sector":[src,dest,time]
     } // Example of the expected structure
     """
-    internal_Sector_Times:  list[dict[str,dict[str,int]]]
+    internal_Sector_Times:  dict[str,list[int]]
 
 
 

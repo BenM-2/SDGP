@@ -59,8 +59,9 @@ class AlgorithmPrecompute:
             self.shortest_times.append(floyd_warshall(graph,n)) 
 
     def _build_graphs(self) -> list[list[list[int]]] :
-        graph: list[list[list[int]]] = []
-        for key in self.parsed.internal_Sector_Times
+        graph = []
+        for value in self.parsed.internal_Sector_Times.values():
+            graph.append(value)
 
         return graph
 
