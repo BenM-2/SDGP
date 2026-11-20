@@ -30,7 +30,7 @@ class input_routes:
 @dataclass
 class input_distances:
     time_From_Headquarters: dict[str,int]
-    internal_Sector_Times:  list[dict[str,dict[str,int]]]
+    internal_Sector_Times:  dict[str,list[int]]
 
 
 @dataclass
