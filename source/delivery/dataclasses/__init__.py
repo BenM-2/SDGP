@@ -9,8 +9,10 @@ from dataclasses import dataclass,field
 from typing import Callable, IO, TextIO
 from ..algorithm.algorithm import floyd_warshall
 from ..dataclasses.io_dc import * # do as i say not as i do :)
+# from ..dataclasses.algorithm_dc import floyd_result
 # Third-party
 import numpy as np
+import numpy.typing as npt
 import csv
 
 
@@ -23,6 +25,7 @@ __all__ = [
     "Callable",
     "floyd_warshall",
     "np",
+    "npt",
     "AlgorithmPrecompute",
     "input_routes",
     "input_distances",
