@@ -44,14 +44,32 @@ class floyd_result:
 @dataclass
 class AlgorithmPrecompute:
     parsed: input_distances
-    graphs: list[dict[str, dict[str, int]]] = field(init=False, repr=False)
-    shortest_times: dict[str, dict[str, int]] | None | np.ndarray = field(init=False, repr=False)
+    graph: list[list[list[int]]] = field(init=False, repr=False)
+    shortest_times: list[floyd_result] = field(init=False, repr=False)
     
     def __post_init__(self) -> None:
-        self.graphs = self._build_graph()
-        self.shortest_times = floyd_warshall(self.graphs)
+        self.graphs = self._build_graphs()
+        for graph in self.graphs:
+            n = 0
+            for u,t,d in graph:
+                if u > n:
+                    n = u
+                if t > n:
+                    n = t
+            self.shortest_times.append(floyd_warshall(graph,n)) 
 
-    def _build_graph(self) -> list[dict[str, dict[str, int]]]:
-        graph: list[dict[str, dict[str, int]]] = [{}]
+    def _build_graphs(self) -> list[list[list[int]]] :
+        graph: list[list[list[int]]] = []
+        for key in self.parsed.internal_Sector_Times
+
         return graph
 
+edges = [
+        [1, 2, 7],
+        [2, 3, 6],
+        [1, 4, 5],
+        [2, 4, 5],
+        [4, 5, 7],
+        [5, 6, 7],
+        [3, 6, 5],
+    ]
