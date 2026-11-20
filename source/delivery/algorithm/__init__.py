@@ -11,6 +11,7 @@ import numpy.typing as npt
 
 # Project dependencies
 from ..errors.errors import Errors, AlgorithmError, AlgorithmErrorCode
+from ..dataclasses.algorithm_dc import floyd_result
 
 __all__ = [
     "math",
@@ -23,4 +24,5 @@ __all__ = [
     "Errors",
     "AlgorithmError",
     "AlgorithmErrorCode",
+    "floyd_result",
 ]

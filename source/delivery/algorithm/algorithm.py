@@ -8,26 +8,23 @@
 from . import *
 import datetime
 
-def example_algorithm():
-    raise AlgorithmError(
-        AlgorithmErrorCode.Err_Graph_Invalid,
-        "Graph is invalid"
-    )
 
 def floyd_warshall(graph_network: list[dict[str, dict[str, int]]]) -> np.ndarray :
     x = np.ndarray(shape=1)
     return x
 
-class floyd_result:
-    distance_table : npt.NDArray[np.float64]
-    path_table : npt.NDArray[np.int_]
 
-def floyd_warshall_test(edges:list[list[int]],n:int) -> npt.NDArray[np.float64]:
+
+def floyd_warshall_test(edges:list[list[int]],n:int) -> floyd_result:
     dist = np.full((n,n),np.inf)
+    path = np.full((n,n),-1,dtype=np.int_)
 
     for src,dest,time in edges:
-        dist[src-1][dest-1] = time
-        dist[dest-1][src-1] = time
+        a, b = src - 1, dest - 1
+        if time < dist[a][b]:                    # keeps the cheapest if edges repeat
+            dist[a][b] = dist[b][a] = time
+            path[a][b] = a                       # predecessor of b on a -> b
+            path[b][a] = b                       # predecessor of a on b -> a
 
     np.fill_diagonal(dist,0)
 
@@ -36,8 +33,19 @@ def floyd_warshall_test(edges:list[list[int]],n:int) -> npt.NDArray[np.float64]:
             for j in range(0,n):
                 if dist[i][j] > dist[i][k] + dist[k][j]:
                     dist[i][j] = dist[i][k] + dist[k][j]
+                    path[i][j] = path[k][j]
 
-    return dist
+    return floyd_result(distance_table=dist,path_table=path)
+
+def get_path(fr:floyd_result,src:int,dest:int)->list[int]:
+    if fr.path_table[src][dest] == -1:
+        return []
+    path = [dest]
+    while dest != src:
+        dest = int(fr.path_table[src][dest])
+        path.append(dest)
+    path.reverse()
+    return path
 
 if __name__ == "__main__":
     # edges = [
@@ -119,21 +127,26 @@ if __name__ == "__main__":
             n1 = t
     
     start1 = datetime.datetime.now()
-    
-    floyd_warshall_test(edges,n1)
+    x = floyd_warshall_test(edges,n1)
+    print(x)
+    for src in range(0,6):
+        for dest in range(0,6):
+                print(f"Src:{src +1},Dest:{dest+1},{get_path(x,src,dest)}")
     end1 = datetime.datetime.now()
-    n2 = 0
-    for u,t,d in edges2:
-        if u > n2:
-            n2 = u
-        if t > n2:
-            n2 = t
-    start2 = datetime.datetime.now()
-    floyd_warshall_test(edges2,n2)
-    end2 = datetime.datetime.now()
-    d1 = (end1 - start1).total_seconds()
-    d2 = (end2 - start2).total_seconds()
+    # n2 = 0
+    # for u,t,d in edges2:
+    #     if u > n2:
+    #         n2 = u
+    #     if t > n2:
+    #         n2 = t
+    # start2 = datetime.datetime.now()
+    # floyd_warshall_test(edges2,n2)
+    # end2 = datetime.datetime.now()
+    # d1 = (end1 - start1).total_seconds()
+    # d2 = (end2 - start2).total_seconds()
 
-    result = d2 / d1
-    print(f"\nedges1 took {d1}\nedges2 took {d2}\ntime difference {abs((d1) - (d2))}\n edges 2 is {result} times slower and array is {n2 / n1} times biger")
+    # result = d2 / d1
+    # print(f"\nedges1 took {d1}\nedges2 took {d2}\ntime difference {abs((d1) - (d2))}\n edges 2 is {result} times slower and array is {n2 / n1} times biger")
+
+
 
