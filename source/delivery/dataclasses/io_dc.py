@@ -35,7 +35,11 @@ class input_distances:
         "sector":[src,dest,time]
     } // Example of the expected structure
     """
+<<<<<<< Updated upstream
     internal_Sector_Times:  dict[str,list[int]]
+=======
+    internal_Sector_Times:  list[dict[str,dict[str,int]]]
+>>>>>>> Stashed changes
 
 
 @dataclass
