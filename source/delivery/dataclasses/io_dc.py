@@ -30,16 +30,12 @@ class input_routes:
 @dataclass
 class input_distances:
     time_From_Headquarters: dict[str,int]
-<<<<<<< Updated upstream
-    internal_Sector_Times:  dict[str,list[int]]
-=======
     """
     internal_Sector_Times = {
         "sector":[src,dest,time]
     } // Example of the expected structure
     """
-    internal_Sector_Times:  list[dict[str,dict[str,int]]]
->>>>>>> Stashed changes
+    internal_Sector_Times:  dict[str,list[int]]
 
 
 @dataclass
