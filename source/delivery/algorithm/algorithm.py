@@ -8,14 +8,13 @@
 from . import *
 import datetime
 
+def floyd_warshall(edges:list[list[int]],n:int) -> floyd_result:
+    """Run Floyd-Warshall on a graph.
 
-def floyd_warshall(graph_network: list[dict[str, dict[str, int]]]) -> np.ndarray :
-    x = np.ndarray(shape=1)
-    return x
-
-
-
-def floyd_warshall_test(edges:list[list[int]],n:int) -> floyd_result:
+    :param edges: Edge list describing the graph.
+    :param n: Number of nodes.
+    :return: Shortest-path result for all node pairs.
+    """
     dist = np.full((n,n),np.inf)
     path = np.full((n,n),-1,dtype=np.int_)
 
@@ -38,6 +37,13 @@ def floyd_warshall_test(edges:list[list[int]],n:int) -> floyd_result:
     return floyd_result(distance_table=dist,path_table=path)
 
 def get_path(fr:floyd_result,src:int,dest:int)->list[int]:
+    """Get the shortest path between two nodes.
+
+    :param fr: Dataclass containing a distance and path_table
+    :param src: Starting node. (zero indexed) 
+    :param dest: Destination node. (zero indexed)
+    :return: Nodes along the path from ``src`` to ``dest``.
+    """
     if fr.path_table[src][dest] == -1:
         return []
     path = [dest]
@@ -127,7 +133,7 @@ if __name__ == "__main__":
             n1 = t
     
     start1 = datetime.datetime.now()
-    x = floyd_warshall_test(edges,n1)
+    x = floyd_warshall(edges,n1)
     print(x)
     for src in range(0,6):
         for dest in range(0,6):
