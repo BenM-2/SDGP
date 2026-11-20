@@ -28,10 +28,3 @@ class AlgorithmPrecompute:
         graph: list[dict[str, dict[str, int]]] = [{}]
         return graph
 
-
-
-if __name__ == "__main__":
-    parsed = input_distances(time_From_Headquarters= {},internal_Sector_Times=[{}])
-    x = AlgorithmPrecompute(parsed)
-
-    print(x)
