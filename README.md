@@ -72,7 +72,9 @@ Run all commands from the project root.
     You will need to run this command in each new terminal session. Run `deactivate` to leave the environment 
 
 
-
 # Usage
 
-
+1. For testing the GUI, run in venv:
+    ``` 
+    uv run -m source.delivery.gui.gui
+    ```
