@@ -14,7 +14,6 @@
 
 from . import *
 
-
 class LeftSidebar(ctk.CTkFrame):
     """Left sidebar for navigation and options"""
     def __init__(self, master, **kwargs):
@@ -89,8 +88,11 @@ class Gui(ctk.CTk):
     SIDEBAR_WIDTH = 220
     MIN_CENTRE_WIDTH = 350
 
-    TARGET_FPS = 60
+    TARGET_FPS = 10
     FRAME_TIME = 1.0 / TARGET_FPS
+
+    assert FRAME_TIME > 0, "Frame time must be positive"
+    assert 0 < TARGET_FPS <= 100, "Target FPS must be between 1 and 100"
 
     def __init__(self, responsive_window: bool = True):
         super().__init__()
